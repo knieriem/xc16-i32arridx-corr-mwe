@@ -6,15 +6,10 @@
 #define nelem(x) (sizeof(x)/sizeof((x)[0]))
 
 static const long expected_result[nelem(mval)] = {
-    0x11110000L,
-    0x33332222L,
-    0x33332222L,
-    0x55554444L,
-
-    0x10000000L,
-    0x30002000L,
-    0x30002000L,
-    0x50004000L,
+    0xc0dec4feL,
+    0x222200a5L,
+    0x222200a5L,
+    0x12345678L,
 };
 
 void compare_result(void)

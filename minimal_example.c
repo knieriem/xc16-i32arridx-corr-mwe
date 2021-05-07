@@ -14,16 +14,12 @@
 // when compiling for dsPIC33EP512GM604 or other EP/EV MCU variants,
 // but NOT for dsPIC33CH512MP506 or FJ MCUs.
 
-long mval[8] = {
-    0x11110000L,
-    0x33332222L,
-    0x55554444L,
-    0x77776666L,
+long mval[4] = {
+	0xc0dec4feL,
+	0x222200a5L,
+	0x12345678L,
+	0,
 
-    0x10000000L,
-    0x30002000L,
-    0x30002000L,
-    0x50004000L,
 };
 
 void
