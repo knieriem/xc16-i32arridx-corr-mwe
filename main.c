@@ -28,7 +28,7 @@ void compare_result(void)
         if (expected_result[i] != mval[i]) {
             warn = "\t!";
         }
-        fprintf(stderr, "%d 0x%04lx  0x%04lx%s\n", i, expected_result[i], mval[i], warn);
+        fprintf(stderr, "%d 0x%08lx  0x%08lx%s\n", i, expected_result[i], mval[i], warn);
     }
 }
 
