@@ -10,6 +10,8 @@ static const long expected_result[nelem(mval)] = {
     0x222200a5L,
     0x222200a5L,
     0x12345678L,
+
+    0xeeeeffff,
 };
 
 void compare_result(void)

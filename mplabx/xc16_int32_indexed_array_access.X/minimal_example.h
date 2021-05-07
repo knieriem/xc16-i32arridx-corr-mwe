@@ -1,3 +1,3 @@
 extern  void    testmr1(void);
 
-extern  long    mval[4];
+extern  long    mval[5];

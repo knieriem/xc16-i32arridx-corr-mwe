@@ -14,7 +14,7 @@
 // when compiling for dsPIC33EP512GM604 or other EP/EV MCU variants,
 // but NOT for dsPIC33CH512MP506 or FJ MCUs.
 
-long mval[4] = {
+long mval[5] = {
 	0xc0dec4feL,
 	0x222200a5L,
 	0x12345678L,
@@ -23,6 +23,7 @@ long mval[4] = {
 	/* Memory behind this position will NOT be overwritten
 	 * by the minimal example code.
 	 */
+	0xeeeeffff,
 };
 
 void
