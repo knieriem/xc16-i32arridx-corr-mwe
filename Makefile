@@ -32,10 +32,13 @@ html: README.html
 	markdown < $< >> $@
 	echo '</body>' >> $@
 
-zip:
+mplabx-zip:
+	git clone . ,,z
 	curdir=`pwd`; \
-	dir=`basename $$curdir`; \
-	zip -9 -x 'misc/*' -r /tmp/$$dir.zip .
+	cd ,,z/mplabx; \
+	cp ../README.md ./xc16_int32_indexed_array_access.X; \
+	zip -9 -r ../../mwe.zip .
+	rm -rf ,,z
 
 .PHONY: showfix all html zip
 
