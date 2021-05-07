@@ -27,7 +27,7 @@ void compare_result(void)
         return;
     }
     fprintf(stderr, "Test failed.\n");
-    fprintf(stderr, "  exp.:       got:\n");
+    fprintf(stderr, "  expected:       got:\n");
     for (i=0; i<nelem(expected_result); i++) {
         warn = "";
         if (expected_result[i] != mval[i]) {
