@@ -20,6 +20,9 @@ long mval[4] = {
 	0x12345678L,
 	0,
 
+	/* Memory behind this position will NOT be overwritten
+	 * by the minimal example code.
+	 */
 };
 
 void
@@ -28,9 +31,13 @@ moveright1(long *a, int n)
 	int i;
 
 	for (i=n-1; i>=0; i--) {
-        /* the a[i] expression will yield the wrong value,
-         * even if a's array boundary is NOT exceeded
-         */
+		/* The loop pointer used in the compiled assembly code
+		 * gets corrupted BEFORE the first loop run;
+		 * it is then not 32-bit aligned anymore, but shifted by 16 bit.
+		 * Thus, a[i] will contain a wrong value composed of parts of
+		 * two adjacing 32-bit array elements.
+		 * The upper array boundary is NOT exceeded at any time.
+		 */
 		a[i+1] = a[i];
 	}
 }
