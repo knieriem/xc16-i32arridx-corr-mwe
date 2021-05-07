@@ -2,7 +2,7 @@
 
 // Minimal working/reproducible example showing the behaviour
 // described at:
-//    https://dl.t9rsys.com/xc16_int32_indexed_array_access.html
+//    https://github.com/knieriem/xc16_array_index_corruption_mwe
 // and
 //  Microchip Case 00515171
 //
