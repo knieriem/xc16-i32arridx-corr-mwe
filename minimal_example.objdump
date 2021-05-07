@@ -1,0 +1,40 @@
+
+minimal_example.o:     file format elf32-pic30
+
+Contents of section .text:
+ 0000 0101e9 000033 c211dd 830140  .....3.....@
+ 0008 8100e8 c208dd 010040 a30278  ........@..x
+ 0010 230278 04a0be 0201e9 e10f41  #.x........A
+ 0018 00003a 000006 210020 400020  ..:...!. @. 
+ 0020 000007 000006                ......      
+Contents of section .data:
+ 0000 fec4dec0 a5002222 78563412 00000000  ......""xV4.....
+Contents of section __c30_signature:
+ 0000 01000000 0000                        ......          
+Disassembly of section .text:
+
+00000000 <_moveright1>:
+   0:	01 01 e9    	dec.w     w1, w2
+   2:	00 00 33    	bra       N, 0x4
+   4:	c2 11 dd    	sl.w      w2, #0x2, w3
+   6:	83 01 40    	add.w     w0, w3, w3
+   8:	81 00 e8    	inc.w     w1, w1
+   a:	c2 08 dd    	sl.w      w1, #0x2, w1
+   c:	01 00 40    	add.w     w0, w1, w0
+
+0000000e <.L3>:
+   e:	a3 02 78    	mov.w     [w3--], w5
+  10:	23 02 78    	mov.w     [w3--], w4
+  12:	04 a0 be    	mov.d     w4, [--w0]
+  14:	02 01 e9    	dec.w     w2, w2
+  16:	e1 0f 41    	add.w     w2, #0x1, [w15]
+  18:	00 00 3a    	bra       NZ, 0x1a <.L1>
+
+0000001a <.L1>:
+  1a:	00 00 06    	return    
+
+0000001c <_testmr1>:
+  1c:	21 00 20    	mov.w     #0x2, w1
+  1e:	40 00 20    	mov.w     #0x4, w0
+  20:	00 00 07    	rcall     0x22
+  22:	00 00 06    	return    
