@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "example.h"
+#include "minimal_example.h"
 
 #define nelem(x) (sizeof(x)/sizeof((x)[0]))
 

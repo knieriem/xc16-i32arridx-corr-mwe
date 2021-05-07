@@ -1,4 +1,4 @@
-#include "example.h"
+#include "minimal_example.h"
 
 // Minimal working/reproducible example showing the behaviour
 // described at:
