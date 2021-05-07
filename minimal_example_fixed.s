@@ -40,7 +40,7 @@ _moveright1:
 	return    
 
 _testmr1:
-	mov.w     w0, w1
+	mov.w     #0x2, w1
 	mov.w     #_mval+4, w0
 	rcall     _moveright1
   	return
