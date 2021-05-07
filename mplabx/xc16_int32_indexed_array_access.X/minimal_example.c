@@ -2,7 +2,7 @@
 
 // Minimal working/reproducible example showing the behaviour
 // described at:
-//    https://github.com/knieriem/xc16_array_index_corruption_mwe
+//    https://github.com/knieriem/xc16-i32arridx-corr-mwe
 // and
 //  Microchip Case 00515171
 //
