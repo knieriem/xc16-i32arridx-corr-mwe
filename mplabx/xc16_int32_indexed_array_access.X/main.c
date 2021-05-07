@@ -25,7 +25,7 @@ void compare_result(void)
         return;
     }
     fprintf(stderr, "Test failed.\n");
-    fprintf(stderr, "  expected:       got:\n");
+    fprintf(stderr, "  expected:     got:\n");
     for (i=0; i<nelem(expected_result); i++) {
         cmp = "==";
         hilight = "";
