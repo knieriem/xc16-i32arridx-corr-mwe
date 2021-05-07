@@ -32,7 +32,7 @@ moveright1(long *a, int n)
 
 	for (i=n-1; i>=0; i--) {
 		/* The loop pointer used in the compiled assembly code
-		 * gets corrupted BEFORE the first loop run;
+		 * gets corrupted BEFORE the first array access;
 		 * it is then not 32-bit aligned anymore, but shifted by 16 bit.
 		 * Thus, a[i] will contain a wrong value composed of parts of
 		 * two adjacing 32-bit array elements.

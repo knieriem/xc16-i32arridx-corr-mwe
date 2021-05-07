@@ -1,46 +1,60 @@
-I'm observing an unexpected behaviour of a C function compiled
-with xc16 v1.50 (same as with v1.41) for a PIC 33EP512GM604.
-The function shown here is a completely stripped-down version of a running median filtering function;
-it is a minimal example to demonstrate the behaviour.
+This directory contains a minimal working example to demonstrate a behaviour
+observable when compiling the example code in [`minimal_example.c`][mwe]
+with [xc16][] v1.70 (or v1.50, or v1.41) on a PIC33EP512GM604, or other EP/EV variant.
 If compiled with optimization levels -O2 and -Os, the function works as expected.
 If compiled using -O1, though, the result seems wrong.
 
-Minimal code example:
+[mwe]:	./mplabx/xc16_int32_indexed_array_access.X/minimal_example.c
+[xc16]:	https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers#tabs
 
-	long mval[4] = {0xc0decafeL, 0x222200a5L, 0x12345678L, 0};
+The function `moveright1` contained in the C source file mentioned above
+is a completely stripped-down version of a running median filtering function;
+it is a minimal example to demonstrate the behaviour.
 
-	void
-	moveright1(long *a, int n)
-	{
-		int i;
+Minimal code example, extracted from minimal_example.c:
 
-		for (i=n-1; i>=0; i--) {
-			a[i+1] = a[i];	/* <- this a[i] expression will yield the wrong value */
-		}
+```C
+long mval[4] = {0xc0decafeL, 0x222200a5L, 0x12345678L, 0};
+
+void
+moveright1(long *a, int n)
+{
+	int i;
+
+	for (i=n-1; i>=0; i--) {
+		/* The loop pointer used in the compiled assembly code
+		 * gets corrupted BEFORE the first array access;
+		 * it is then not 32-bit aligned anymore, but shifted by 16 bit.
+		 * Thus, a[i] will contain a wrong value composed of parts of
+		 * two adjacing 32-bit array elements.
+		 * The upper array boundary is NOT exceeded at any time.
+		 */
+		a[i+1] = a[i];
 	}
+}
 
-	void
-	testmr1(int n)
-	{
-		moveright1(&mval[1], n);
-	}
+void
+testmr1(void)
+{
+	moveright1(&mval[1], 2);
+}
+```
 
 Compilation command line:
 
-	/opt/microchip/xc16/v1.50/bin/xc16-gcc \
+	/opt/microchip/xc16/v1.70/bin/xc16-gcc \
 		-O1 \
 		-Wall \
 		-mcpu=33EP512GM604
 
-The function takes an int32 array 'a',
-and moves 'n' array elements to the next higher position,
+The function takes an int32 array `a`,
+and moves `n` array elements to the next higher position,
 so that a new value could be stored into position a[0].
-For an input array like defined above, and e.g. 'n=2',
+For an input array as defined above, and e.g. 'n=2',
 the following resulting array content can be observed,
 if compiled using -O2, and -Os:
 
-(should be viewed in a fixed-width font)
-Showing 16-bit words in memory order:
+(16-bit words in memory order)
 
             [0]         [1]         [2]         [3]
     before: cafe c0de | 00a5 2222 | 5678 1234 | 0000 0000
