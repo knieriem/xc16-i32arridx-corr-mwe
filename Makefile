@@ -36,7 +36,7 @@ mplabx-zip:
 	git clone . ,,z
 	curdir=`pwd`; \
 	cd ,,z/mplabx; \
-	cp ../README.md ./xc16_int32_indexed_array_access.X; \
+	cp ../README.md ../LICENSE ./xc16_int32_indexed_array_access.X; \
 	zip -9 -r ../../mwe.zip .
 	rm -rf ,,z
 
