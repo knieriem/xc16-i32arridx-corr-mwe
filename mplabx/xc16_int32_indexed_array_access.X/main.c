@@ -17,7 +17,8 @@ static const long expected_result[nelem(mval)] = {
 void compare_result(void)
 {
     int i;
-    const char *warn;
+    const char *cmp;
+    const char *hilight;
 
     if (memcmp(expected_result, mval, sizeof expected_result)==0) {
         fprintf(stderr, "Test passed.\n");
@@ -26,11 +27,13 @@ void compare_result(void)
     fprintf(stderr, "Test failed.\n");
     fprintf(stderr, "  expected:       got:\n");
     for (i=0; i<nelem(expected_result); i++) {
-        warn = "";
+        cmp = "==";
+        hilight = "";
         if (expected_result[i] != mval[i]) {
-            warn = "\t!";
+            cmp = "!=";
+            hilight = "  <----";
         }
-        fprintf(stderr, "%d 0x%08lx  0x%08lx%s\n", i, expected_result[i], mval[i], warn);
+        fprintf(stderr, "%d 0x%08lx %s 0x%08lx%s\n", i, expected_result[i], cmp, mval[i], hilight);
     }
 }
 
