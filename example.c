@@ -6,9 +6,13 @@
 // and
 //  Microchip Case 00515171
 //
-// Compile with optimization option -O1
-// Btw, the memory corruption occurs when compiling for
-// dsPIC33EP512GM604, but NOT for dsPIC33CH512MP506.
+// To observe the behaviour, it is necessary to compile with
+// optimization option -O1; other optimization levels won't
+// show the behaviour.
+//
+// Btw, the array index corruption, and thus, memory corruption, occurs
+// when compiling for dsPIC33EP512GM604 or other EP/EV MCU variants,
+// but NOT for dsPIC33CH512MP506 or FJ MCUs.
 
 long mval[8] = {
     0x11110000L,
