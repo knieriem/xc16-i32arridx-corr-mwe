@@ -7,6 +7,10 @@ If compiled using -O1, though, the result seems wrong.
 [mwe]:	./mplabx/xc16_int32_indexed_array_access.X/minimal_example.c
 [xc16]:	https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers#tabs
 
+**Edit: This problem was the subject of support case 00515171 at Microchip Technology,
+opened in May, 2020. It was accepted as issue XC16-1595 in September, 2021;
+it is fixed now in XC16 compiler v2.00 from January 2022.**
+
 The function `moveright1` contained in the C source file mentioned above
 is a completely stripped-down version of a running median filtering function;
 it is a minimal example to demonstrate the behaviour.
